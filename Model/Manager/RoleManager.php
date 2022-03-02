@@ -2,10 +2,11 @@
 
 namespace App\Model\Manager;
 use App\Model\DB;
+use App\Model\Entity\Role;
 
 class RoleManager {
 
-    private string $table = 'roles';
+    private string $table = 'role';
     private UserRoleManager $userRoleManager;
 
     public function __construct()
@@ -17,7 +18,7 @@ class RoleManager {
     public function findAll(): array
     {
         $roles = [];
-        $query = DB::getPDO()->query("select * FROM  role " );
+        $query = DB::getPDO()->query("SELECT * FROM  role");
         if ($query) {
             foreach ($query->fetchAll() as $roleData) {
                 $role = new Role();
