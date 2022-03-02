@@ -19,6 +19,7 @@ class AbstractEntity
      */
     public function setId(?int $id): self
     {
+        $this->id = $id;
        return $this;
     }
 }

@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Model;
-use App\Model\Config;
+use App\Config;
+use PDO;
+use PDOException;
 
 class DB {
     private static ?PDO $pdoObject = null;
     private static string $dsn = "mysql:host=%s;dbname=%s;charset=%s";
 
-    public function getPDO(): PDO{
+    public static function getPDO(): PDO{
         if (self::$pdoObject === null){
             try {
                 $dsn = sprintf(self::$dsn, Config::DB_HOST, Config::DB_NAME, Config::DB_CHARSET);

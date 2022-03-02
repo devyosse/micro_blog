@@ -6,10 +6,9 @@ use App\Model\DB;
 use App\Model\Entity\Article;
 use DateTime;
 
-class ArticleManager
-{
-    public function findAll(): array
-    {
+
+class ArticleManager{
+    public function findAll() :array{
         $articles = [];
         $query = DB::getPDO()->query("SELECT * FROM article");
         if ($query){
@@ -21,12 +20,11 @@ class ArticleManager
                     ->setId($articleData['id'])
                     ->setAuthor($userManager->getUserById($articleData['author']))
                     ->setContent($articleData['content'])
-                    ->setDataAdd(DateTime::createFromFormat($format, $articleData['date_add']))
-                    ->setDataAdd(DateTime::createFromFormat($format, $articleData['date_update']))
+                    ->setDateAdd(DateTime::createFromFormat($format, $articleData['date_add']))
+                    ->setDateUpdate(DateTime::createFromFormat($format, $articleData['date_update']))
                     ->setId($articleData['title']);
             }
         }
-
         return $articles;
     }
 }
